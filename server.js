@@ -7,7 +7,14 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT
 
 //configuration
 //TODO: connect to mongoDB in docker
-//mongoose.connect('');
+console.log(process.env.MONGO_PORT_27017_TCP_ADDR);
+
+var retryMongoConnection = function() {
+    mongoose.connect(process.env.MONGO_PORT_27017_TCP_ADDR, function(err) {
+        setTimeout(retryMongoConnection, 500);
+    });
+}
+retryMongoConnection();
 
 app.use(express.static(__dirname + '/static')); // set the static file location
 // app.use(morgan('dev'));                                         // log every request to the console
@@ -69,4 +76,8 @@ app.delete('/todos/:todo_id', function(req, res) {
             res.json(todos);
         });
     });
+});
+
+app.get('*', function(req, res) {
+    res.sendfile('./static/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });

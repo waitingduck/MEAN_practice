@@ -4,6 +4,6 @@ angular.module('memoApp', ['ui.router'])
         $stateProvider
             .state('landing', {
                 url: '/',
-                templateUrl: 'memoView.html'
+                templateUrl: 'index.html'
             });
     }]);

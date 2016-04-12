@@ -1,9 +1,19 @@
 angular.module('memoApp', ['ui.router'])
 
-    .config(['$stateProvider', function($stateProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+
+        $urlRouterProvider.otherwise("/");
+
         $stateProvider
-            .state('landing', {
+            .state('memo', {
                 url: '/',
-                templateUrl: 'index.html'
+                templateUrl: 'memoPage.html',
+                controller: 'memoController'
+            })
+
+            // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
+            .state('about', {
+                url: '/about',
+                templateUrl: 'memoAbout.html'
             });
     }]);

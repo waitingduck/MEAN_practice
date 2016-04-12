@@ -7,14 +7,18 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT
 
 //configuration
 //TODO: connect to mongoDB in docker
+console.log( process.env );
 console.log(process.env.MONGO_PORT_27017_TCP_ADDR);
 
-var retryMongoConnection = function() {
-    mongoose.connect(process.env.MONGO_PORT_27017_TCP_ADDR, function(err) {
-        setTimeout(retryMongoConnection, 500);
-    });
-}
-retryMongoConnection();
+// var retryMongoConnection = function() {
+//     console.log('trying connect to mongo:' + process.env.MONGO_PORT_27017_TCP_ADDR);
+//     mongoose.connect('mongodb://mongo:27017', function(err) {
+//         setTimeout(retryMongoConnection, 500);
+//     });
+// }
+// retryMongoConnection();
+
+mongoose.connect('mongodb://mongo:27017');
 
 app.use(express.static(__dirname + '/static')); // set the static file location
 // app.use(morgan('dev'));                                         // log every request to the console
@@ -23,12 +27,17 @@ app.use(bodyParser.json());                                     // parse applica
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
 
+
+var Todo = mongoose.model('Todo', {
+    text : String
+});
+
 app.listen(8080);
 console.log("App listening on port 8080");
 
 //route
 app.get('/todos', function(req, res) {
-
+    console.log('memo get');
     // use mongoose to get all todos in the database
     Todo.find(function(err, todos) {
 

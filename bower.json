@@ -4,7 +4,7 @@
   "author": "Wei Ting Cheng <waitinduck@gmail.com>",
   "dependencies": {
     "angular": "^1.5.4",
-    "angular-ui-router": "^1.3.0",
+    "angular-ui-router": "0.2.18",
     "bootstrap": "^3.3.6"
   }
 }

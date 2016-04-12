@@ -1,0 +1,5 @@
+FROM mongo
+
+RUN npm mongo
+
+CMD ["node", "server.js"]

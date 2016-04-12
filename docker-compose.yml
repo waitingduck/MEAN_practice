@@ -4,10 +4,11 @@ services:
     build: .
     ports:
       - "8080:8080"
-    links:
-      - mongo:mongo
+    depends_on:
+      - mongo
     container_name: memo
     image: memo
 
   mongo:
     image: mongo
+    container_name: memo-mongo

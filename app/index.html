@@ -1,0 +1,49 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="memoApp">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Node/Angular Todo App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <!-- SPELLS -->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>&lt;!&ndash; load jquery &ndash;&gt;-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>&lt;!&ndash; load angular &ndash;&gt;-->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
+    <!--<script src="index.js"></script>-->
+    <!--<script src="memoController.js"></script>-->
+
+    <!-- bower:js-->
+    <!-- endinject -->
+    <!-- inject:js -->
+    <!-- endinject -->
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<body>
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="memo">MemoApp</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="memo">Memo</a></li>
+        <li><a ui-sref="about">About</a></li>
+    </ul>
+</nav>
+
+
+<div class="container">
+    <div ui-view></div>
+</div>
+
+
+</body>
+</html>

@@ -1,32 +1,19 @@
 var express = require('express');
 var app = express(); //create express app
 var mongoose = require('mongoose');
-var morgan = require('morgan');
 var bodyParser = require('body-parser'); //pull information from http POST
 var methodOverride = require('method-override'); // simulate DELETE and PUT
-
-//configuration
-//TODO: connect to mongoDB in docker
-console.log( process.env );
-console.log(process.env.MONGO_PORT_27017_TCP_ADDR);
-
-// var retryMongoConnection = function() {
-//     console.log('trying connect to mongo:' + process.env.MONGO_PORT_27017_TCP_ADDR);
-//     mongoose.connect('mongodb://mongo:27017', function(err) {
-//         setTimeout(retryMongoConnection, 500);
-//     });
-// }
-// retryMongoConnection();
+var path = require('path');
 
 mongoose.connect('mongodb://mongo:27017');
 
-app.use(express.static(__dirname + '/static')); // set the static file location
 // app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
 
+app.use(express.static('/app/dest'));
 
 var Todo = mongoose.model('Todo', {
     text : String
@@ -87,6 +74,3 @@ app.delete('/todos/:todo_id', function(req, res) {
     });
 });
 
-app.get('*', function(req, res) {
-    res.sendfile('./static/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-});

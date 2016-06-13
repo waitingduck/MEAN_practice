@@ -9,26 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
     <title>Node/Angular Todo App</title>
-
-    <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-    <!-- SPELLS -->
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>&lt;!&ndash; load jquery &ndash;&gt;-->
-    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>&lt;!&ndash; load angular &ndash;&gt;-->
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
-    <!--<script src="index.js"></script>-->
-    <!--<script src="memoController.js"></script>-->
-
-    <!-- bower:js-->
-    <script src="jquery.js"></script>
-    <script src="angular.js"></script>
-    <script src="angular-ui-router.js"></script>
-    <script src="bootstrap.js"></script>
-    <!-- endinject -->
-    <!-- inject:js -->
-    <script src="app.js"></script>
-    <!-- endinject -->
     <!-- inject:css -->
+    <!-- endinject -->
+    <!-- bowercss:css-->
+    <link rel="stylesheet" href="vendor.css">
     <!-- endinject -->
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS -->
@@ -49,6 +33,11 @@
     <div ui-view></div>
 </div>
 
-
+<!-- bowerjs:js-->
+<script src="vendor.js"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="app.js"></script>
+<!-- endinject -->
 </body>
 </html>

@@ -12,6 +12,12 @@ var paths = {
 
 var pipes = {};
 
+pipes.cleanDest = function () {
+    return gulp.src('dest/', {read: false})
+        .pipe(plugins.clean());
+};
+
+
 pipes.builtPartialScripts = function() {
     return gulp.src(paths.partials)
                .pipe(gulp.dest(paths.dest));
@@ -23,10 +29,16 @@ pipes.builtAppStyles = function() {
                .pipe(gulp.dest(paths.dest));
 };
 
+pipes.builtVendorStyles = function() {
+    return gulp.src(mainBowerFiles('**/*.css'))
+        .pipe(plugins.concat('vendor.css'))
+        .pipe(gulp.dest(paths.dest));
+};
+
 pipes.builtVendorScripts = function() {
-    return gulp.src(mainBowerFiles())
+    return gulp.src(mainBowerFiles('**/*.js'))
                .pipe(pipes.orderVendorScripts())
-               // .pipe(plugins.concat('vendor.js'))
+               .pipe(plugins.concat('vendor.js'))
                // .pipe(plugins.uglify())
                .pipe(gulp.dest(paths.dest));
 };
@@ -58,19 +70,23 @@ pipes.bowerFiles = function() {
 
 pipes.builtIndex = function() {
   
+    var vendorStyles = pipes.builtVendorStyles();
     var vendorScripts = pipes.builtVendorScripts();
     var appScripts = pipes.builtAppScripts();
     var appStyles = pipes.builtAppStyles();
+    pipes.builtPartialScripts();
     
     return gulp.src('app/index.html')
           .pipe(gulp.dest(paths.dest))
-          .pipe(plugins.inject(vendorScripts, {relative:true, name:'bower'}))
+          .pipe(plugins.inject(vendorScripts, {relative:true, name:'bowerjs'}))
+          .pipe(plugins.inject(vendorStyles, {relative:true, name:'bowercss'}))
           // .pipe(plugins.inject(gulp.src(mainBowerFiles()), {relative:true, name:'bower'}))
           .pipe(plugins.inject(appScripts, {relative:true}))
           .pipe(plugins.inject(appStyles, {relative:true}))
           .pipe(gulp.dest(paths.dest));
 };
 
-gulp.task('build-app', pipes.builtIndex);
+gulp.task('clean-app', pipes.cleanDest);
+gulp.task('build-app', ['clean-app'], pipes.builtIndex);
 
 

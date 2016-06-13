@@ -7,13 +7,13 @@ angular.module('memoApp', ['ui.router'])
         $stateProvider
             .state('memo', {
                 url: '/',
-                templateUrl: 'memoPage.html',
+                templateUrl: 'pages/memo/memoPage.html',
                 controller: 'memoController'
             })
 
             // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
             .state('about', {
                 url: '/about',
-                templateUrl: 'memoAbout.html'
+                templateUrl: 'pages/about/memoAbout.html'
             });
     }]);

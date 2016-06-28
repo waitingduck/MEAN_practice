@@ -6,6 +6,9 @@ services:
       - "8080:8080"
     depends_on:
       - mongo
+    volumes:
+      - ./dest/:/app/dest/
+      - ./server.js:/app/server.js
     container_name: memo
     image: memo
 

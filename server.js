@@ -5,7 +5,7 @@ var bodyParser = require('body-parser'); //pull information from http POST
 var methodOverride = require('method-override'); // simulate DELETE and PUT
 var path = require('path');
 
-mongoose.connect('mongodb://mongo:27017');
+mongoose.connect('mongodb://mongo:27017/local');
 
 // app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
@@ -24,14 +24,13 @@ console.log("App listening on port 8080");
 
 //route
 app.get('/todos', function(req, res) {
-    console.log('memo get');
     // use mongoose to get all todos in the database
     Todo.find(function(err, todos) {
 
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-        if (err)
-            res.send(err)
-
+        if (err) {
+            res.send(err);
+        }
         res.json(todos); // return all todos in JSON format
     });
 });

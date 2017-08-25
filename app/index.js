@@ -1,3 +1,6 @@
+/**
+ * @module MemoApp - App configuration 
+ */
 angular.module('memoApp', ['ui.router'])
 
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -17,3 +20,12 @@ angular.module('memoApp', ['ui.router'])
                 templateUrl: 'pages/about/memoAbout.html'
             });
     }]);
+
+/**
+ * It is a test jsdoc demo function
+ * @param a input a
+ * @returns {boolean} jsdoc detect output type
+ */
+function test(a) {
+    return true;
+}

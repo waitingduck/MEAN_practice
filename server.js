@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express(); //create express app
+
 var mongoose = require('mongoose');
+
 var bodyParser = require('body-parser'); //pull information from http POST
 var methodOverride = require('method-override'); // simulate DELETE and PUT
 var path = require('path');
@@ -26,7 +28,7 @@ console.log("App listening on port 8080");
 app.get('/todos', function(req, res) {
     // use mongoose to get all todos in the database
     Todo.find(function(err, todos) {
-
+        console.log('find all todo');
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err) {
             res.send(err);

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "author": "Wei Ting Cheng <waitinduck@gmail.com>",
   "dependencies": {
-    "angular": "^1.5.4",
+    "angular": "1.5.4",
     "angular-ui-router": "0.2.18",
     "bootstrap": "3.0.0"
   }
